@@ -136,11 +136,19 @@ EDAI_TEST_REAL_API=false make test  # 仅 mock 测试（速度快）
 3. `make lint`——同时运行 ruff 和 mypy，两者必须通过。
 4. `make test`——所有测试必须通过。
 
-`make lint` 需单独在 `make test` 之前运行。Lint 是阻塞式检查——目前没有 pre-commit 钩子或 CI。
+`make lint` 需单独在 `make test` 之前运行。Lint 是阻塞式检查。
+
+配置 pre-commit（首次克隆后运行一次）：
+```bash
+pre-commit install
+```
+
+之后每次 `git commit` 会自动运行格式化（ruff format）、lint（ruff check）和类型检查（mypy），不通过则拒绝提交。
 
 ## 特殊文件
 
 - `.env`——API 凭据及测试开关（不提交至 git）。
+- `.pre-commit-config.yaml`——pre-commit 钩子配置（ruff format、ruff check、mypy）。
 - `.opencode/opencode.json`——OpenCode 插件配置（`oh-my-opencode-slim`）。
 - `.opencode/.gitignore`——阻止提交 `.opencode` 目录下的 node_modules/ 和包文件。
-- 无 `.github/`、无 `.pre-commit-config.yaml`、无 CI。
+- 无 `.github/`、无 CI。

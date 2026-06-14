@@ -55,7 +55,9 @@ class ReplExec(Tool):
                 },
                 "timeout": {
                     "type": "number",
-                    "description": ("Timeout for reading output in seconds (default 10, 5 for stop)."),
+                    "description": (
+                        "Timeout for reading output in seconds (default 10, 5 for stop)."
+                    ),
                 },
             },
             "required": ["action"],
