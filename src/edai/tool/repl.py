@@ -6,8 +6,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from edai.backend import Backend
 from edai.error import BackendError
+from edai.tool.backend import Backend
 from edai.tool.base import Tool
 
 

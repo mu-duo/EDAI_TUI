@@ -31,6 +31,8 @@ dependencies = [
     "openai>=1.0.0",
     # Environment variable loading
     "python-dotenv>=1.0.0",
+    # PTY-based subprocess interaction
+    "pexpect>=4.8",
     # CLI framework
     # "rich>=13.0",
     # "textual>=0.40",
