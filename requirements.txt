@@ -1,0 +1,6 @@
+# edai — core runtime dependencies
+# Install: pip install -r requirements.txt
+# For development use: pip install -e ".[dev]"  (see requirements-dev.txt)
+
+openai>=1.0.0
+python-dotenv>=1.0.0
