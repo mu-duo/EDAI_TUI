@@ -204,7 +204,7 @@ PATH_OPTIONS = frozenset(
 
 
 # Tcl 内建命令（非 RainaSynth 命令，但应被识别为 Tcl）
-TCL_BUILTINS = frozenset({"set", "puts", "expr"})
+TCL_BUILTINS = frozenset({"set", "puts", "expr", "list_vars"})
 
 
 class TclInterpreter(Interpreter):
@@ -233,6 +233,15 @@ class TclInterpreter(Interpreter):
         if name not in self.variables:
             raise TclError(f'can\'t read "{name}": no such variable')
         return self.variables[name]
+
+    def unset_var(self, name: str) -> None:
+        self.variables.pop(name, None)
+
+    def clear_vars(self) -> None:
+        self.variables.clear()
+
+    def list_vars(self) -> dict[str, str]:
+        return dict(self.variables)
 
     # ---- 替换引擎 ----
 
@@ -308,6 +317,7 @@ class TclInterpreter(Interpreter):
             "set": self._cmd_set,
             "puts": self._cmd_puts,
             "expr": self._cmd_expr,
+            "list_vars": self._cmd_list_vars,
         }.get(cmd_name)
 
         if handler is not None:
@@ -343,8 +353,15 @@ class TclInterpreter(Interpreter):
 
     def _cmd_puts(self, args: list[str]) -> str:
         text = self._subst_vars(" ".join(args))
-        print(text)
         return text
+
+    def _cmd_list_vars(self, args: list[str]) -> str:
+        if args:
+            raise TclError('wrong # args: "list_vars" takes no arguments')
+        if not self.variables:
+            return "(no variables set)"
+        lines = [f"{name} = {value}" for name, value in sorted(self.variables.items())]
+        return "\n".join(lines)
 
     def _cmd_expr(self, args: list[str]) -> str:
         """简易算术 —— 通过 Python eval 模拟。"""
@@ -928,6 +945,7 @@ class TclMagics(Magics):
           set var value     — 赋值变量
           puts text         — 打印
           expr expression   — 算术计算
+          list_vars         — 列出所有变量（非 Tcl 内建，仅供调试）
 
         变量替换:
           $var    — 读取变量值

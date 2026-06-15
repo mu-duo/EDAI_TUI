@@ -133,14 +133,14 @@ def _launch_ipython_shell() -> int:
     from edai.tool.tcl_interpreter import (
         ALL_COMMANDS,
         TCL_BUILTINS,
-        TclInterpreter,
+        _interp,
         load_ipython_extension,
     )
 
     shell = TerminalInteractiveShell.instance()
     load_ipython_extension(shell)
 
-    tcl = TclInterpreter()
+    tcl = _interp
     valid_commands = set(ALL_COMMANDS) | set(TCL_BUILTINS)
 
     agent: Agent | None
