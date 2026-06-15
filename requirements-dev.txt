@@ -11,3 +11,9 @@ mypy>=1.8.0
 
 # Pre-commit hooks
 pre-commit>=3.6.0
+
+# Documentation — Sphinx + Read the Docs
+sphinx>=7.0
+sphinx-rtd-theme>=2.0
+myst-parser>=4.0
+sphinx-autobuild>=2024.0
