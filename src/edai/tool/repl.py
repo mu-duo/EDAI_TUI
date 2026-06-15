@@ -4,11 +4,14 @@ edai.tool.repl — Tool for interacting with a binary tool in a REPL-like manner
 
 from __future__ import annotations
 
-from typing import Any
+from collections.abc import Callable
+from typing import TYPE_CHECKING, Any, Protocol
 
 from edai.error import BackendError
-from edai.tool.backend import Backend
 from edai.tool.base import Tool
+
+if TYPE_CHECKING:
+    pass
 
 
 class ReplExec(Tool):
@@ -19,9 +22,17 @@ class ReplExec(Tool):
         "'stop' to shut down."
     )
 
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        backend_factory: Callable[[list[str]], ReplBackendProtocol] | None = None,
+        start_command: str | None = None,
+        start_args: list[str] | None = None,
+    ) -> None:
         """Initialize the REPL tool with no running backend."""
-        self._backend: Backend | None = None
+        self._backend: ReplBackendProtocol | None = None
+        self._backend_factory = backend_factory or _default_backend_factory
+        self._start_command = start_command
+        self._start_args = list(start_args or [])
 
     # ------------------------------------------------------------------
     # Schema
@@ -115,7 +126,7 @@ class ReplExec(Tool):
             return {"error": "already running — stop first"}
 
         try:
-            backend = Backend([command, *args])
+            backend = self._backend_factory([command, *args])
             backend.start()
         except BackendError as exc:
             return {"error": str(exc)}
@@ -131,6 +142,25 @@ class ReplExec(Tool):
         self._backend = backend
 
         return {"status": "started", "output": output, "stderr": stderr}
+
+    def ensure_started(
+        self,
+        command: str | None = None,
+        args: list[str] | None = None,
+        timeout: float = 10.0,
+    ) -> dict[str, Any]:
+        """Start the REPL if needed and return start status/result."""
+        backend = self._backend
+        if backend is not None and backend.is_running:
+            return {"status": "started", "output": "", "stderr": ""}
+
+        start_command = command or self._start_command or ""
+        start_args = list(args if args is not None else self._start_args)
+        return self._start(start_command, start_args, timeout)
+
+    def eval_input(self, input: str, timeout: float = 10.0) -> dict[str, Any]:
+        """Evaluate a line in the current REPL session."""
+        return self._eval(input, timeout)
 
     def _eval(self, input: str, timeout: float) -> dict[str, Any]:
         """Send input to the REPL and read the response."""
@@ -169,3 +199,90 @@ class ReplExec(Tool):
         self._backend = None
 
         return {"status": "stopped", "returncode": returncode}
+
+
+class ReplBackendProtocol(Protocol):
+    """Minimal backend interface required by ReplExec."""
+
+    @property
+    def is_running(self) -> bool: ...
+
+    @property
+    def returncode(self) -> int | None: ...
+
+    def start(self) -> None: ...
+
+    def read_output(self, *, timeout: float | None = None, max_lines: int | None = None) -> str: ...
+
+    def flush_error(self) -> str: ...
+
+    def sendline(self, line: str) -> None: ...
+
+    def close(self, *, timeout: float = 5.0) -> int | None: ...
+
+
+def _default_backend_factory(argv: list[str]) -> ReplBackendProtocol:
+    from edai.tool.backend import Backend
+
+    return Backend(argv)
+
+
+class MockBackend:
+    """Simple in-memory backend for REPL-style tool simulation."""
+
+    def __init__(
+        self,
+        argv: list[str],
+        evaluator: Callable[[str], tuple[str, str] | str] | None = None,
+        banner: str = "",
+    ) -> None:
+        self.argv = argv
+        self._evaluator = evaluator
+        self._banner = banner
+        self._stdout_buffer = banner
+        self._stderr_buffer = ""
+        self._started = False
+        self.is_running = False
+        self.returncode: int | None = None
+
+    def start(self) -> None:
+        self._started = True
+        self.is_running = True
+        self.returncode = None
+
+    def read_output(self, *, timeout: float | None = None, max_lines: int | None = None) -> str:
+        _ = timeout
+        _ = max_lines
+        output = self._stdout_buffer
+        self._stdout_buffer = ""
+        if output:
+            return output
+        raise TimeoutError
+
+    def flush_error(self) -> str:
+        stderr = self._stderr_buffer
+        self._stderr_buffer = ""
+        return stderr
+
+    def sendline(self, line: str) -> None:
+        if not self.is_running:
+            raise BackendError("backend is not running")
+
+        if self._evaluator is None:
+            self._stdout_buffer = f"{line}\n"
+            return
+
+        result = self._evaluator(line)
+        if isinstance(result, tuple):
+            stdout, stderr = result
+        else:
+            stdout, stderr = result, ""
+
+        self._stdout_buffer = stdout
+        self._stderr_buffer = stderr
+
+    def close(self, *, timeout: float = 5.0) -> int | None:
+        _ = timeout
+        self.is_running = False
+        self.returncode = 0
+        return self.returncode

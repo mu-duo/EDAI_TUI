@@ -5,3 +5,5 @@
 openai>=1.0.0
 python-dotenv>=1.0.0
 pexpect>=4.8
+prompt-toolkit>=3.0.0
+ipython>=8.0.0

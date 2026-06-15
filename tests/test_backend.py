@@ -6,7 +6,6 @@ import sys
 import time
 
 import pytest
-
 from edai.backend import Backend, BackendError, BackendNotRunningError
 
 # ------------------------------------------------------------------

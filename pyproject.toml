@@ -33,6 +33,9 @@ dependencies = [
     "python-dotenv>=1.0.0",
     # PTY-based subprocess interaction
     "pexpect>=4.8",
+    # Interactive shell extension and completion support
+    "prompt-toolkit>=3.0.0",
+    "ipython>=8.0.0",
     # CLI framework
     # "rich>=13.0",
     # "textual>=0.40",
@@ -54,6 +57,7 @@ Documentation = "https://github.com/tanlinfeng/EDAI_TUI#readme"
 
 [project.scripts]
 edai = "edai.__main__:main"
+genenv = "edai.utils.env:generate_env_file"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -15,14 +15,14 @@ def generate_env_file(force: bool = False, template: str = "deepseek") -> None:
         print(".env file already exists. Skipping generation.")
         return
 
-    with open(env_path, "w") as f:
+    with open(env_path, "w", encoding="utf-8", newline="\n") as f:
         if template == "deepseek":
             f.write('LLM_BASE_URL="https://api.deepseek.com"\n')
             f.write('LLM_MODEL_ID="deepseek-v4-flash"\n')
             f.write('LLM_API_KEY="sk-..."\n')
             f.write("\n")
             f.write(
-                '# Test toggle — set to "true" to run integration tests against the real API.\n'
+                '# Test toggle - set to "true" to run integration tests against the real API.\n'
             )
             f.write('# When unset or "false" the test suite uses mocks / skips real-API tests.\n')
             f.write("EDAI_TEST_REAL_API=false\n")
@@ -32,7 +32,7 @@ def generate_env_file(force: bool = False, template: str = "deepseek") -> None:
             f.write('LLM_API_KEY="sk-..."\n')
             f.write("\n")
             f.write(
-                '# Test toggle — set to "true" to run integration tests against the real API.\n'
+                '# Test toggle - set to "true" to run integration tests against the real API.\n'
             )
             f.write('# When unset or "false" the test suite uses mocks / skips real-API tests.\n')
             f.write("EDAI_TEST_REAL_API=false\n")
@@ -44,7 +44,7 @@ def generate_env_file(force: bool = False, template: str = "deepseek") -> None:
             f.write('LLM_API_KEY=""\n')
             f.write("\n")
             f.write(
-                '# Test toggle — set to "true" to run integration tests against the real API.\n'
+                '# Test toggle - set to "true" to run integration tests against the real API.\n'
             )
             f.write('# When unset or "false" the test suite uses mocks / skips real-API tests.\n')
             f.write("EDAI_TEST_REAL_API=false\n")
