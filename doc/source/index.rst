@@ -1,15 +1,18 @@
-.. EDAI documentation master file, created by
-   sphinx-quickstart on Mon Jun 15 17:16:07 2026.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 EDAI documentation
-=============================
+===================
 
-EDAI is a tool for analyzing and visualizing data in an interactive terminal user interface (TUI). It provides a convenient way to explore and understand data without leaving the command line.
-
+**EDAI** (Electronic Design Automation Intelligence) is an LLM-driven
+terminal user interface for EDA tools. It combines an IPython shell
+environment with a natural language agent to let you interact with
+EDA tools using plain English, Tcl commands, or Python — all within a
+single session.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   overview
+   features
+   getting_started
+   usage
+   commands

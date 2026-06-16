@@ -1,0 +1,41 @@
+{% extends "!layout.html" %}
+
+{%- block css %}
+    {{ super() }}
+    <style>
+        .edai-lang-switch {
+            position: fixed;
+            top: 1em;
+            right: 1em;
+            z-index: 1000;
+        }
+        .edai-lang-switch a {
+            display: inline-block;
+            padding: 4px 12px;
+            border: 1px solid #2980b9;
+            border-radius: 3px;
+            color: #2980b9;
+            font-size: 13px;
+            text-decoration: none;
+            background: #fff;
+            transition: all 0.2s;
+        }
+        .edai-lang-switch a:hover {
+            background: #2980b9;
+            color: #fff;
+        }
+    </style>
+{%- endblock %}
+
+{%- block content %}
+    {% if language == 'en' %}
+    <div class="edai-lang-switch">
+        <a href="../zh/{{ pagename }}.html" title="切换到中文">中文</a>
+    </div>
+    {% else %}
+    <div class="edai-lang-switch">
+        <a href="../en/{{ pagename }}.html" title="Switch to English">English</a>
+    </div>
+    {% endif %}
+    {{ super() }}
+{%- endblock %}

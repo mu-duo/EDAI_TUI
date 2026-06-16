@@ -1,0 +1,144 @@
+# Chinese translations for EDAI.
+# Copyright (C) 2026, tanlinfeng
+# This file is distributed under the same license as the EDAI package.
+# tanlinfeng <>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: EDAI \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-16 11:20+0800\n"
+"PO-Revision-Date: 2026-06-16 11:20+0800\n"
+"Last-Translator: tanlinfeng <>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../../source/overview.rst:2
+msgid "Overview"
+msgstr "概览"
+
+#: ../../source/overview.rst:5
+msgid "What is EDAI?"
+msgstr "什么是 EDAI？"
+
+#: ../../source/overview.rst:7
+msgid ""
+"EDAI is a terminal-based interactive environment that bridges the gap "
+"between natural language and EDA (Electronic Design Automation) tools. It"
+" provides an IPython shell augmented with:"
+msgstr ""
+"EDAI 是一个基于终端的交互式环境，弥合了自然语言与 EDA（电子设计自动化）工具之间的鸿沟。"
+"它提供了一个增强的 IPython shell，具备以下能力："
+
+#: ../../source/overview.rst:11
+msgid ""
+"A **large language model agent** that understands your design intent and "
+"translates it into executable EDA commands."
+msgstr ""
+"**大语言模型智能体**，能够理解您的设计意图并将其转换为可执行的 EDA 命令。"
+
+#: ../../source/overview.rst:13
+msgid ""
+"A **built-in Tcl interpreter** that understands 180+ EDA commands across "
+"subsystems such as floorplanning, placement, CTS, routing, STA, power "
+"analysis, DRC, and more."
+msgstr ""
+"**内置 Tcl 解释器**，支持 180 多条 EDA 命令，涵盖布局规划、布局布线、时钟树综合、时序分析、功耗分析、设计规则检查等子系统。"
+
+#: ../../source/overview.rst:16
+msgid ""
+"A **simulation backend** that lets you explore the full workflow without "
+"requiring an actual EDA license or tool installation."
+msgstr ""
+"**模拟后端**，让您无需真实的 EDA 许可证或工具安装即可探索完整工作流程。"
+
+#: ../../source/overview.rst:19
+msgid ""
+"EDAI is designed for digital chip design workflows where engineers need "
+"to quickly prototype flows, experiment with tool settings, or learn an "
+"EDA toolchain through conversational interaction."
+msgstr ""
+"EDAI 专为数字芯片设计工作流程而设计，工程师可以通过对话式交互快速原型化流程、实验工具设置或学习 EDA 工具链。"
+
+#: ../../source/overview.rst:24
+msgid "How it Works"
+msgstr "工作原理"
+
+#: ../../source/overview.rst:26
+msgid ""
+"When you start EDAI, you enter an IPython shell with three input modes, "
+"automatically detected:"
+msgstr ""
+"启动 EDAI 后，您将进入一个 IPython shell，系统会自动检测三种输入模式："
+
+#: ../../source/overview.rst:32
+msgid "**Tcl commands**"
+msgstr "**Tcl 命令**"
+
+#: ../../source/overview.rst:30
+msgid ""
+"If your input looks like a valid EDA Tcl command (e.g., ``read_liberty "
+"-path ./lib.lib``), it is routed directly to the built-in Tcl interpreter"
+" for execution."
+msgstr ""
+"如果您的输入看起来像一个有效的 EDA Tcl 命令（例如 ``read_liberty -path ./lib.lib``），"
+"它将被直接路由到内置的 Tcl 解释器执行。"
+
+#: ../../source/overview.rst:37
+msgid "**Python code**"
+msgstr "**Python 代码**"
+
+#: ../../source/overview.rst:35
+msgid ""
+"If your input can be parsed as valid Python (e.g., "
+"``print(sta.worst_slack)``), it is executed in the IPython namespace and "
+"the result is displayed."
+msgstr ""
+"如果您的输入可被解析为有效的 Python 代码（例如 ``print(sta.worst_slack)``），"
+"它将在 IPython 命名空间中执行并显示结果。"
+
+#: ../../source/overview.rst:42
+msgid "**Natural language**"
+msgstr "**自然语言**"
+
+#: ../../source/overview.rst:40
+msgid ""
+"Everything else is sent to the LLM agent, which interprets your intent, "
+"selects the appropriate Tcl command, and returns the result."
+msgstr ""
+"其他所有输入将被发送到 LLM 智能体，智能体会解释您的意图，选择合适的 Tcl 命令，并返回结果。"
+
+#: ../../source/overview.rst:44
+msgid ""
+"This triage happens automatically on every line, so you can mix all three"
+" styles freely in a single session."
+msgstr ""
+"这种分流机制在每一行输入时自动发生，因此您可以在同一会话中自由混用这三种方式。"
+
+#: ../../source/overview.rst:48
+msgid "Target Audience"
+msgstr "目标用户"
+
+#: ../../source/overview.rst:50
+msgid "**Digital design engineers** running RTL-to-GDS flows."
+msgstr "**数字设计工程师**，运行 RTL 到 GDS 的流程。"
+
+#: ../../source/overview.rst:51
+msgid "**EDA tool application engineers** developing and debugging tool scripts."
+msgstr "**EDA 工具应用工程师**，开发和调试工具脚本。"
+
+#: ../../source/overview.rst:53
+msgid ""
+"**Students and researchers** learning EDA toolchains through "
+"conversational interaction."
+msgstr ""
+"**学生和研究人员**，通过对话式交互学习 EDA 工具链。"
+
+#: ../../source/overview.rst:55
+msgid "**Flow automation engineers** prototyping new design flows quickly."
+msgstr "**流程自动化工程师**，快速原型化新的设计流程。"

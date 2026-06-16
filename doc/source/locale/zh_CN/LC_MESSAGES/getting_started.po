@@ -1,0 +1,110 @@
+# Chinese translations for EDAI.
+# Copyright (C) 2026, tanlinfeng
+# This file is distributed under the same license as the EDAI package.
+# tanlinfeng <>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: EDAI \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-16 11:20+0800\n"
+"PO-Revision-Date: 2026-06-16 11:20+0800\n"
+"Last-Translator: tanlinfeng <>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../../source/getting_started.rst:2
+msgid "Getting Started"
+msgstr "快速开始"
+
+#: ../../source/getting_started.rst:5
+msgid "Prerequisites"
+msgstr "环境要求"
+
+#: ../../source/getting_started.rst:7
+msgid "Python 3.10 or later."
+msgstr "Python 3.10 或更高版本。"
+
+#: ../../source/getting_started.rst:8
+msgid "An OpenAI-compatible API key (optional for simulation mode)."
+msgstr "兼容 OpenAI 的 API 密钥（模拟模式可选）。"
+
+#: ../../source/getting_started.rst:11
+msgid "Installation"
+msgstr "安装"
+
+#: ../../source/getting_started.rst:13
+msgid "Install EDAI from source:"
+msgstr "从源码安装 EDAI："
+
+#: ../../source/getting_started.rst:22
+msgid "For development (includes test and lint tools):"
+msgstr "开发模式（包含测试和代码检查工具）："
+
+#: ../../source/getting_started.rst:29
+msgid "Configuration"
+msgstr "配置"
+
+#: ../../source/getting_started.rst:31
+msgid ""
+"Create a ``.env`` file in the project root or let EDAI generate one for "
+"you:"
+msgstr ""
+"在项目根目录创建 ``.env`` 文件，或让 EDAI 为您生成一个："
+
+#: ../../source/getting_started.rst:38
+msgid "Edit the file to set your LLM provider:"
+msgstr "编辑文件以设置您的 LLM 提供商："
+
+#: ../../source/getting_started.rst:46
+msgid ""
+"If you only want to use simulation mode (no real LLM required), you can "
+"skip the API key — EDAI will still start and process Tcl commands "
+"directly."
+msgstr ""
+"如果您只想使用模拟模式（不需要真实的 LLM），可以跳过 API 密钥——EDAI 仍将启动并直接处理 Tcl 命令。"
+
+#: ../../source/getting_started.rst:51
+msgid "Running EDAI"
+msgstr "运行 EDAI"
+
+#: ../../source/getting_started.rst:53
+msgid "Start the interactive shell:"
+msgstr "启动交互式 shell："
+
+#: ../../source/getting_started.rst:59
+msgid "You will see the IPython prompt with EDAI extensions loaded::"
+msgstr "您将看到 IPython 提示符，EDAI 扩展已加载：："
+
+#: ../../source/getting_started.rst:68
+msgid "Try some commands:"
+msgstr "尝试一些命令："
+
+#: ../../source/getting_started.rst:88
+msgid "Generating a .env File"
+msgstr "生成 .env 文件"
+
+#: ../../source/getting_started.rst:90
+msgid "The ``genenv`` command creates a fresh ``.env`` from a template:"
+msgstr "``genenv`` 命令从模板创建一个新的 ``.env`` 文件："
+
+#: ../../source/getting_started.rst:99
+msgid "What's Next"
+msgstr "下一步"
+
+#: ../../source/getting_started.rst:101
+msgid "Read the :doc:`usage` guide for detailed walkthroughs."
+msgstr "阅读 :doc:`usage` 指南获取详细教程。"
+
+#: ../../source/getting_started.rst:102
+msgid "Browse the :doc:`commands` reference for all available Tcl commands."
+msgstr "浏览 :doc:`commands` 参考手册查看所有可用的 Tcl 命令。"
+
+#: ../../source/getting_started.rst:103
+msgid "See :doc:`features` for a full overview of capabilities."
+msgstr "查看 :doc:`features` 了解全部功能概览。"

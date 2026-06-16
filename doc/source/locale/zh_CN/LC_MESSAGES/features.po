@@ -1,0 +1,347 @@
+# Chinese translations for EDAI.
+# Copyright (C) 2026, tanlinfeng
+# This file is distributed under the same license as the EDAI package.
+# tanlinfeng <>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: EDAI \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-16 11:20+0800\n"
+"PO-Revision-Date: 2026-06-16 11:20+0800\n"
+"Last-Translator: tanlinfeng <>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../../source/features.rst:2
+msgid "Features"
+msgstr "功能特性"
+
+#: ../../source/features.rst:5
+msgid "Natural Language Interface"
+msgstr "自然语言界面"
+
+#: ../../source/features.rst:7
+msgid ""
+"Describe what you want to do in plain English, and EDAI's LLM agent "
+"translates it into the appropriate EDA commands."
+msgstr ""
+"用简单的英语描述您想要做的事情，EDAI 的 LLM 智能体会将其转换为适当的 EDA 命令。"
+
+#: ../../source/features.rst:16
+msgid ""
+"The agent maintains conversation context, so you can refine requests "
+"iteratively just as you would with a colleague."
+msgstr ""
+"智能体保持对话上下文，因此您可以像与同事交流一样迭代地优化请求。"
+
+#: ../../source/features.rst:20
+msgid "Built-in Tcl Interpreter"
+msgstr "内置 Tcl 解释器"
+
+#: ../../source/features.rst:22
+msgid ""
+"EDAI comes with a Tcl interpreter that understands **184 EDA commands** "
+"organized across 19 subsystems. You can type Tcl commands directly "
+"without any special prefix:"
+msgstr ""
+"EDAI 内置一个 Tcl 解释器，支持横跨 19 个子系统的 **184 条 EDA 命令**。您可以直接输入 Tcl 命令，无需任何特殊前缀："
+
+#: ../../source/features.rst:32
+msgid ""
+"The interpreter supports Tcl variable substitution (``$var``), command "
+"substitution (``[command]``), and built-in commands such as ``set``, "
+"``puts``, and ``expr``."
+msgstr ""
+"解释器支持 Tcl 变量替换（``$var``）、命令替换（``[command]``）以及内建命令，如 ``set``、``puts`` 和 ``expr``。"
+
+#: ../../source/features.rst:37
+msgid "Simulation Mode"
+msgstr "模拟模式"
+
+#: ../../source/features.rst:39
+msgid ""
+"No EDA tool license? No problem. EDAI includes a simulation backend that "
+"produces realistic output for all supported commands. This lets you:"
+msgstr ""
+"没有 EDA 工具许可证？没问题。EDAI 包含一个模拟后端，可为所有支持的命令生成逼真的输出。这使您可以："
+
+#: ../../source/features.rst:43
+msgid "**Prototype and debug flows** without touching licensed tools."
+msgstr "**原型设计和调试流程**，无需接触许可工具。"
+
+#: ../../source/features.rst:44
+msgid "**Learn the tool command set** interactively."
+msgstr "**交互式学习工具命令集**。"
+
+#: ../../source/features.rst:45
+msgid "**Demonstrate and teach** in environments without tool access."
+msgstr "**演示和教学**，在没有工具访问权限的环境中。"
+
+#: ../../source/features.rst:46
+msgid "**Test flow scripts** before running them on real tools."
+msgstr "**测试流程脚本**，在实际工具上运行之前。"
+
+#: ../../source/features.rst:48
+msgid ""
+"When connected to a real EDA tool backend, the simulation layer is "
+"transparently replaced with live execution."
+msgstr ""
+"当连接到真实的 EDA 工具后端时，模拟层会被透明地替换为实时执行。"
+
+#: ../../source/features.rst:52
+msgid "IPython Shell"
+msgstr "IPython Shell"
+
+#: ../../source/features.rst:54
+msgid "The full IPython experience is available alongside EDA commands:"
+msgstr "完整的 IPython 体验与 EDA 命令并行可用："
+
+#: ../../source/features.rst:56
+msgid "Python REPL with history, tab completion, and magic commands."
+msgstr "Python REPL，带有历史记录、Tab 补全和魔术命令。"
+
+#: ../../source/features.rst:57
+msgid "Rich display of Python objects (DataFrames, arrays, plots)."
+msgstr "Python 对象的丰富显示（DataFrame、数组、图表）。"
+
+#: ../../source/features.rst:58
+msgid "Access to the Tcl interpreter state from Python."
+msgstr "从 Python 访问 Tcl 解释器状态。"
+
+#: ../../source/features.rst:59
+msgid "Ability to write Python scripts that mix EDA commands with analysis code."
+msgstr "能够编写混合了 EDA 命令和分析代码的 Python 脚本。"
+
+#: ../../source/features.rst:62
+msgid ""
+"You can query simulation results, compute metrics, or generate reports — "
+"all within the same terminal session."
+msgstr ""
+"您可以查询模拟结果、计算指标或生成报告——所有这些都在同一个终端会话中完成。"
+
+#: ../../source/features.rst:66
+msgid "180+ Commands Across the Full EDA Flow"
+msgstr "覆盖完整 EDA 流程的 180 多条命令"
+
+#: ../../source/features.rst:68
+msgid ""
+"The built-in command database covers the major stages of a digital design"
+" flow:"
+msgstr ""
+"内置命令数据库覆盖了数字设计流程的主要阶段："
+
+#: ../../source/features.rst:72
+msgid "Subsystem"
+msgstr "子系统"
+
+#: ../../source/features.rst:72
+msgid "Example Commands"
+msgstr "示例命令"
+
+#: ../../source/features.rst:74
+msgid "**Config**"
+msgstr "**配置**"
+
+#: ../../source/features.rst:74
+msgid "``flow_init``, ``db_init``, ``flow_config``"
+msgstr "``flow_init``、``db_init``、``flow_config``"
+
+#: ../../source/features.rst:76
+msgid "**Database**"
+msgstr "**数据库**"
+
+#: ../../source/features.rst:76
+msgid "``idb_init``, ``tech_lef_init``, ``def_init``, ``verilog_init``"
+msgstr "``idb_init``、``tech_lef_init``、``def_init``、``verilog_init``"
+
+#: ../../source/features.rst:79
+msgid "**Floorplan**"
+msgstr "**布局规划**"
+
+#: ../../source/features.rst:79
+msgid "``floorplan_init``, ``set_die_area``"
+msgstr "``floorplan_init``、``set_die_area``"
+
+#: ../../source/features.rst:81
+msgid "**PDN**"
+msgstr "**电源网络**"
+
+#: ../../source/features.rst:81
+msgid "``create_grid``, ``create_stripe``, ``connect_macro_pdn``"
+msgstr "``create_grid``、``create_stripe``、``connect_macro_pdn``"
+
+#: ../../source/features.rst:84
+msgid "**Placement**"
+msgstr "**布局布线**"
+
+#: ../../source/features.rst:84
+msgid "``run_placer``, ``run_filler``, ``placer_run_gp``, ``placer_run_dp``"
+msgstr "``run_placer``、``run_filler``、``placer_run_gp``、``placer_run_dp``"
+
+#: ../../source/features.rst:87
+msgid "**CTS**"
+msgstr "**时钟树综合**"
+
+#: ../../source/features.rst:87
+msgid "``run_cts``, ``cts_report``"
+msgstr "``run_cts``、``cts_report``"
+
+#: ../../source/features.rst:89
+msgid "**Routing**"
+msgstr "**布线**"
+
+#: ../../source/features.rst:89
+msgid "``run_rt``, ``run_ert``, ``rt_get_congestion``"
+msgstr "``run_rt``、``run_ert``、``rt_get_congestion``"
+
+#: ../../source/features.rst:92
+msgid "**STA**"
+msgstr "**静态时序分析**"
+
+#: ../../source/features.rst:92
+msgid "``run_sta``, ``read_liberty``, ``read_sdc``, ``report_timing``"
+msgstr "``run_sta``、``read_liberty``、``read_sdc``、``report_timing``"
+
+#: ../../source/features.rst:95
+msgid "**Power Analysis**"
+msgstr "**功耗分析**"
+
+#: ../../source/features.rst:95
+msgid "``run_power``, ``report_power``, ``report_ir_drop``"
+msgstr "``run_power``、``report_power``、``report_ir_drop``"
+
+#: ../../source/features.rst:98
+msgid "**Timing Opt**"
+msgstr "**时序优化**"
+
+#: ../../source/features.rst:98
+msgid "``run_to``, ``run_to_setup``, ``run_to_hold``"
+msgstr "``run_to``、``run_to_setup``、``run_to_hold``"
+
+#: ../../source/features.rst:101
+msgid "**DRC**"
+msgstr "**设计规则检查**"
+
+#: ../../source/features.rst:101
+msgid "``run_drc``, ``check_def``, ``save_drc``"
+msgstr "``run_drc``、``check_def``、``save_drc``"
+
+#: ../../source/features.rst:103
+msgid "**ECO**"
+msgstr "**工程变更指令**"
+
+#: ../../source/features.rst:103
+msgid "``eco_repair_via``"
+msgstr "``eco_repair_via``"
+
+#: ../../source/features.rst:105
+msgid "**GUI**"
+msgstr "**图形界面**"
+
+#: ../../source/features.rst:105
+msgid "``gui_start``, ``gui_show``, ``capture_design``"
+msgstr "``gui_start``、``gui_show``、``capture_design``"
+
+#: ../../source/features.rst:108
+msgid "**Report**"
+msgstr "**报告**"
+
+#: ../../source/features.rst:108
+msgid "``report_db``, ``report_wirelength``, ``report_congestion``"
+msgstr "``report_db``、``report_wirelength``、``report_congestion``"
+
+#: ../../source/features.rst:113
+msgid "Tab Completion for Tcl Commands"
+msgstr "Tcl 命令的 Tab 补全"
+
+#: ../../source/features.rst:115
+msgid "When typing in Tcl mode, you get context-aware tab completion:"
+msgstr "在 Tcl 模式下输入时，您可以获得上下文感知的 Tab 补全："
+
+#: ../../source/features.rst:117
+msgid "Command name completion — type ``pla`` + :kbd:`Tab` → ``run_placer``."
+msgstr "命令名称补全——输入 ``pla`` + :kbd:`Tab` → ``run_placer``。"
+
+#: ../../source/features.rst:118
+msgid ""
+"Option completion — after a command, :kbd:`Tab` shows available flags "
+"like ``-path``, ``-max_density``."
+msgstr ""
+"选项补全——在命令后按 :kbd:`Tab`，显示可用的标志，如 ``-path``、``-max_density``。"
+
+#: ../../source/features.rst:120
+msgid "File path completion — for options expecting file paths."
+msgstr "文件路径补全——针对需要文件路径的选项。"
+
+#: ../../source/features.rst:121
+msgid "Duplicate option prevention — already-used options are filtered out."
+msgstr "重复选项预防——已使用的选项会被过滤掉。"
+
+#: ../../source/features.rst:125
+msgid "Configurable LLM Backend"
+msgstr "可配置的 LLM 后端"
+
+#: ../../source/features.rst:127
+msgid ""
+"EDAI works with any OpenAI-compatible API. Configure the model, endpoint,"
+" and API key through environment variables:"
+msgstr ""
+"EDAI 可与任何兼容 OpenAI 的 API 配合使用。通过环境变量配置模型、端点和 API 密钥："
+
+#: ../../source/features.rst:130
+msgid "``LLM_BASE_URL`` — API endpoint (defaults to DeepSeek)."
+msgstr "``LLM_BASE_URL``——API 端点（默认使用 DeepSeek）。"
+
+#: ../../source/features.rst:131
+msgid "``LLM_MODEL_ID`` — model identifier."
+msgstr "``LLM_MODEL_ID``——模型标识符。"
+
+#: ../../source/features.rst:132
+msgid "``LLM_API_KEY`` — your API key."
+msgstr "``LLM_API_KEY``——您的 API 密钥。"
+
+#: ../../source/features.rst:134
+msgid ""
+"This makes it easy to switch between cloud providers or use a locally-"
+"hosted model."
+msgstr ""
+"这使得在云提供商之间切换或使用本地托管的模型变得非常容易。"
+
+#: ../../source/features.rst:138
+msgid "Extensible Tool System"
+msgstr "可扩展的工具系统"
+
+#: ../../source/features.rst:140
+msgid ""
+"Behind the scenes, EDAI has a plugin-style tool architecture. The tool "
+"system supports:"
+msgstr ""
+"在底层，EDAI 采用插件式的工具架构。工具系统支持："
+
+#: ../../source/features.rst:143
+msgid "**Bash execution** — run arbitrary shell commands."
+msgstr "**Bash 执行**——运行任意 shell 命令。"
+
+#: ../../source/features.rst:144
+msgid ""
+"**REPL interaction** — interact with persistent subprocesses (Python, "
+"Tcl, or custom interpreters)."
+msgstr ""
+"**REPL 交互**——与持久性子进程（Python、Tcl 或自定义解释器）进行交互。"
+
+#: ../../source/features.rst:146
+msgid "**Named interpreters** — spawn and manage long-running language backends."
+msgstr "**命名解释器**——生成并管理长时间运行的语言后端。"
+
+#: ../../source/features.rst:149
+msgid ""
+"New tools can be added without modifying core code, making EDAI adaptable"
+" to different EDA toolchains and workflows."
+msgstr ""
+"无需修改核心代码即可添加新工具，使 EDAI 能够适应不同的 EDA 工具链和工作流程。"

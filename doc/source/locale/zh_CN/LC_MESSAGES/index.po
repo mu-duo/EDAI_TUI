@@ -1,0 +1,38 @@
+# Chinese translations for EDAI.
+# Copyright (C) 2026, tanlinfeng
+# This file is distributed under the same license as the EDAI package.
+# tanlinfeng <>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: EDAI \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-16 11:20+0800\n"
+"PO-Revision-Date: 2026-06-16 11:20+0800\n"
+"Last-Translator: tanlinfeng <>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../../source/index.rst:10
+msgid "Contents:"
+msgstr "目录"
+
+#: ../../source/index.rst:2
+msgid "EDAI documentation"
+msgstr "EDAI 文档"
+
+#: ../../source/index.rst:4
+msgid ""
+"**EDAI** (Electronic Design Automation Intelligence) is an LLM-driven "
+"terminal user interface for EDA tools. It combines an IPython shell "
+"environment with a natural language agent to let you interact with EDA "
+"tools using plain English, Tcl commands, or Python — all within a single "
+"session."
+msgstr ""
+"**EDAI** (Electronic Design Automation Intelligence) 是一个由大语言模型驱动的 EDA 工具终端界面。"
+"它将 IPython shell 环境与自然语言智能体相结合，让您可以在同一会话中通过英语、Tcl 命令或 Python 与 EDA 工具进行交互。"

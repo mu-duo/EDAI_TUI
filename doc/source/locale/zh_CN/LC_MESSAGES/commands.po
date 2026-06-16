@@ -1,0 +1,658 @@
+# Chinese translations for EDAI.
+# Copyright (C) 2026, tanlinfeng
+# This file is distributed under the same license as the EDAI package.
+# tanlinfeng <>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: EDAI \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-16 11:20+0800\n"
+"PO-Revision-Date: 2026-06-16 11:20+0800\n"
+"Last-Translator: tanlinfeng <>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../../source/commands.rst:2
+msgid "Command Reference"
+msgstr "命令参考"
+
+#: ../../source/commands.rst:4
+msgid ""
+"EDAI includes **184 EDA commands** organized by subsystem. Below is a "
+"reference grouped by functional area."
+msgstr ""
+"EDAI 包含按子系统组织的 **184 条 EDA 命令**。以下按功能领域分组参考。"
+
+#: ../../source/commands.rst:8
+msgid "Config"
+msgstr "配置"
+
+#: ../../source/commands.rst:10
+msgid "Commands for flow initialization and configuration."
+msgstr "流程初始化和配置命令。"
+
+#: ../../source/commands.rst:12
+msgid "``flow_init`` — Initialize the EDA flow."
+msgstr "``flow_init``——初始化 EDA 流程。"
+
+#: ../../source/commands.rst:13
+msgid "``db_init`` — Initialize the design database."
+msgstr "``db_init``——初始化设计数据库。"
+
+#: ../../source/commands.rst:14
+msgid "``flow_config`` — Set flow-level configuration options."
+msgstr "``flow_config``——设置流程级配置选项。"
+
+#: ../../source/commands.rst:15
+msgid "``flow_init_flow`` — Initialize from a saved flow configuration."
+msgstr "``flow_init_flow``——从保存的流程配置初始化。"
+
+#: ../../source/commands.rst:16
+msgid "``flow_save_config`` — Save current flow configuration."
+msgstr "``flow_save_config``——保存当前流程配置。"
+
+#: ../../source/commands.rst:19
+msgid "Database"
+msgstr "数据库"
+
+#: ../../source/commands.rst:21
+msgid "Commands for loading and saving design data."
+msgstr "加载和保存设计数据的命令。"
+
+#: ../../source/commands.rst:23
+msgid "``idb_init`` — Initialize the intermediate database."
+msgstr "``idb_init``——初始化中间数据库。"
+
+#: ../../source/commands.rst:24
+msgid "``tech_lef_init`` — Load technology LEF file."
+msgstr "``tech_lef_init``——加载工艺 LEF 文件。"
+
+#: ../../source/commands.rst:25
+msgid "``def_init`` — Load DEF file."
+msgstr "``def_init``——加载 DEF 文件。"
+
+#: ../../source/commands.rst:26
+msgid "``verilog_init`` — Load Verilog netlist."
+msgstr "``verilog_init``——加载 Verilog 网表。"
+
+#: ../../source/commands.rst:27
+msgid "``def_save`` — Save design to DEF format."
+msgstr "``def_save``——将设计保存为 DEF 格式。"
+
+#: ../../source/commands.rst:28
+msgid "``netlist_save`` — Save design to Verilog netlist."
+msgstr "``netlist_save``——将设计保存为 Verilog 网表。"
+
+#: ../../source/commands.rst:29
+msgid "``gds_save`` — Save design to GDS format."
+msgstr "``gds_save``——将设计保存为 GDS 格式。"
+
+#: ../../source/commands.rst:30
+msgid "``idb_gds_save`` — Save GDS via intermediate database."
+msgstr "``idb_gds_save``——通过中间数据库保存 GDS。"
+
+#: ../../source/commands.rst:33
+msgid "Floorplan"
+msgstr "布局规划"
+
+#: ../../source/commands.rst:35
+msgid "``floorplan_init`` — Initialize floorplan."
+msgstr "``floorplan_init``——初始化布局规划。"
+
+#: ../../source/commands.rst:36
+msgid "``set_die_area`` — Set die area dimensions."
+msgstr "``set_die_area``——设置芯片面积尺寸。"
+
+#: ../../source/commands.rst:37
+msgid "``floorplan_auto`` — Auto-generate floorplan."
+msgstr "``floorplan_auto``——自动生成布局规划。"
+
+#: ../../source/commands.rst:40
+msgid "PDN (Power Delivery Network)"
+msgstr "PDN（电源分配网络）"
+
+#: ../../source/commands.rst:42
+msgid "``create_grid`` — Create a power grid on a specified layer."
+msgstr "``create_grid``——在指定层上创建电源网格。"
+
+#: ../../source/commands.rst:43
+msgid "``create_stripe`` — Create power stripes."
+msgstr "``create_stripe``——创建电源条带。"
+
+#: ../../source/commands.rst:44
+msgid "``connect_two_layer`` — Connect PDN between two layers."
+msgstr "``connect_two_layer``——连接两层之间的 PDN。"
+
+#: ../../source/commands.rst:45
+msgid "``connect_macro_pdn`` — Connect macro pins to PDN."
+msgstr "``connect_macro_pdn``——将宏单元引脚连接到 PDN。"
+
+#: ../../source/commands.rst:46
+msgid "``pdn_connect`` — General PDN connectivity."
+msgstr "``pdn_connect``——通用的 PDN 连接。"
+
+#: ../../source/commands.rst:47
+msgid "``pdn_report`` — Report PDN configuration."
+msgstr "``pdn_report``——报告 PDN 配置。"
+
+#: ../../source/commands.rst:48
+msgid "``pdn_reroute`` — Reroute PDN connections."
+msgstr "``pdn_reroute``——重新布线 PDN 连接。"
+
+#: ../../source/commands.rst:51
+msgid "Placement (iPL)"
+msgstr "布局（iPL）"
+
+#: ../../source/commands.rst:53
+msgid "``run_placer`` — Run full placement."
+msgstr "``run_placer``——运行完整布局。"
+
+#: ../../source/commands.rst:54
+msgid "``run_filler`` — Insert filler cells."
+msgstr "``run_filler``——插入填充单元。"
+
+#: ../../source/commands.rst:55
+msgid "``placer_run_gp`` — Run global placement."
+msgstr "``placer_run_gp``——运行全局布局。"
+
+#: ../../source/commands.rst:56
+msgid "``placer_run_dp`` — Run detailed placement."
+msgstr "``placer_run_dp``——运行详细布局。"
+
+#: ../../source/commands.rst:57
+msgid "``placer_run_bu`` — Run bottom-up placement."
+msgstr "``placer_run_bu``——运行自底向上布局。"
+
+#: ../../source/commands.rst:58
+msgid "``placer_run_co`` — Run cluster-oriented placement."
+msgstr "``placer_run_co``——运行面向聚类的布局。"
+
+#: ../../source/commands.rst:59
+msgid "``placer_run_raw`` — Run raw/unconstrained placement."
+msgstr "``placer_run_raw``——运行原始/无约束布局。"
+
+#: ../../source/commands.rst:60
+msgid "``placer_run_random`` — Run random placement."
+msgstr "``placer_run_random``——运行随机布局。"
+
+#: ../../source/commands.rst:61
+msgid "``placer_init_legalizer`` — Initialize legalizer."
+msgstr "``placer_init_legalizer``——初始化合法化器。"
+
+#: ../../source/commands.rst:62
+msgid "``placer_run_legalizer_pause`` — Run legalizer (pause mode)."
+msgstr "``placer_run_legalizer_pause``——运行合法化器（暂停模式）。"
+
+#: ../../source/commands.rst:63
+msgid "``placer_run_legalizer_resume`` — Resume legalizer."
+msgstr "``placer_run_legalizer_resume``——恢复合法化器。"
+
+#: ../../source/commands.rst:64
+msgid "``placer_set_io_pin`` — Set I/O pin constraints."
+msgstr "``placer_set_io_pin``——设置 I/O 引脚约束。"
+
+#: ../../source/commands.rst:65
+msgid "``placer_check_density`` — Check placement density."
+msgstr "``placer_check_density``——检查布局密度。"
+
+#: ../../source/commands.rst:66
+msgid "``report_placement`` — Report placement results."
+msgstr "``report_placement``——报告布局结果。"
+
+#: ../../source/commands.rst:69
+msgid "Clock Tree Synthesis (CTS)"
+msgstr "时钟树综合（CTS）"
+
+#: ../../source/commands.rst:71
+msgid "``run_cts`` — Run clock tree synthesis."
+msgstr "``run_cts``——运行时钟树综合。"
+
+#: ../../source/commands.rst:72
+msgid "``run_cts_flow`` — Run CTS with flow integration."
+msgstr "``run_cts_flow``——运行集成流程的 CTS。"
+
+#: ../../source/commands.rst:73
+msgid "``run_cts_clustering`` — Run CTS with clustering."
+msgstr "``run_cts_clustering``——运行带聚类的 CTS。"
+
+#: ../../source/commands.rst:74
+msgid "``run_cts_sink_clustering`` — Run sink clustering CTS."
+msgstr "``run_cts_sink_clustering``——运行接收端聚类 CTS。"
+
+#: ../../source/commands.rst:75
+msgid "``cts_report`` — Report CTS results."
+msgstr "``cts_report``——报告 CTS 结果。"
+
+#: ../../source/commands.rst:78
+msgid "Routing (iRT)"
+msgstr "布线（iRT）"
+
+#: ../../source/commands.rst:80
+msgid "``run_rt`` — Run global and detailed routing."
+msgstr "``run_rt``——运行全局和详细布线。"
+
+#: ../../source/commands.rst:81
+msgid "``run_ert`` — Run enhanced routing."
+msgstr "``run_ert``——运行增强布线。"
+
+#: ../../source/commands.rst:82
+msgid "``run_rt_flow`` — Run routing with flow integration."
+msgstr "``run_rt_flow``——运行集成流程的布线。"
+
+#: ../../source/commands.rst:83
+msgid "``run_rt_flow_ert`` — Run enhanced routing with flow."
+msgstr "``run_rt_flow_ert``——运行带流程的增强布线。"
+
+#: ../../source/commands.rst:84
+msgid "``rt_get_congestion`` — Get congestion data."
+msgstr "``rt_get_congestion``——获取拥塞数据。"
+
+#: ../../source/commands.rst:85
+msgid "``rt_report`` — Report routing results."
+msgstr "``rt_report``——报告布线结果。"
+
+#: ../../source/commands.rst:86
+msgid "``rt_report_wire_length`` — Report wire length details."
+msgstr "``rt_report_wire_length``——报告线长详情。"
+
+#: ../../source/commands.rst:87
+msgid "``rt_report_via`` — Report via usage."
+msgstr "``rt_report_via``——报告通孔使用情况。"
+
+#: ../../source/commands.rst:90
+msgid "Static Timing Analysis (STA — iSTA)"
+msgstr "静态时序分析（STA——iSTA）"
+
+#: ../../source/commands.rst:92
+msgid "``run_sta`` — Run static timing analysis."
+msgstr "``run_sta``——运行静态时序分析。"
+
+#: ../../source/commands.rst:93
+msgid "``read_liberty`` — Read Liberty timing library."
+msgstr "``read_liberty``——读取 Liberty 时序库。"
+
+#: ../../source/commands.rst:94
+msgid "``read_sdc`` — Read SDC timing constraints."
+msgstr "``read_sdc``——读取 SDC 时序约束。"
+
+#: ../../source/commands.rst:95
+msgid "``read_spef`` — Read SPEF parasitics."
+msgstr "``read_spef``——读取 SPEF 寄生参数。"
+
+#: ../../source/commands.rst:96
+msgid "``report_timing`` — Generate timing report."
+msgstr "``report_timing``——生成时序报告。"
+
+#: ../../source/commands.rst:97
+msgid "``report_timing_derate`` — Report timing with derating."
+msgstr "``report_timing_derate``——报告带降额因子的时序。"
+
+#: ../../source/commands.rst:98
+msgid "``report_constraint`` — Report constraint coverage."
+msgstr "``report_constraint``——报告约束覆盖率。"
+
+#: ../../source/commands.rst:99
+msgid "``report_worst_paths`` — Report worst timing paths."
+msgstr "``report_worst_paths``——报告最差时序路径。"
+
+#: ../../source/commands.rst:100
+msgid "``sta_init`` — Initialize STA engine."
+msgstr "``sta_init``——初始化 STA 引擎。"
+
+#: ../../source/commands.rst:101
+msgid "``set_timing_corner`` — Set timing analysis corner."
+msgstr "``set_timing_corner``——设置时序分析拐角。"
+
+#: ../../source/commands.rst:102
+msgid "``set_analysis_mode`` — Set analysis mode (single/multi-corner)."
+msgstr "``set_analysis_mode``——设置分析模式（单/多拐角）。"
+
+#: ../../source/commands.rst:105
+msgid "Power Analysis (iPA)"
+msgstr "功耗分析（iPA）"
+
+#: ../../source/commands.rst:107
+msgid "``run_power`` — Run power analysis."
+msgstr "``run_power``——运行功耗分析。"
+
+#: ../../source/commands.rst:108
+msgid "``report_power`` — Generate power report."
+msgstr "``report_power``——生成功耗报告。"
+
+#: ../../source/commands.rst:109
+msgid "``report_ir_drop`` — Report IR drop analysis."
+msgstr "``report_ir_drop``——报告 IR 压降分析。"
+
+#: ../../source/commands.rst:110
+msgid "``run_power_rail`` — Run power rail analysis."
+msgstr "``run_power_rail``——运行电源轨分析。"
+
+#: ../../source/commands.rst:111
+msgid "``run_dynamic_power`` — Run dynamic power analysis."
+msgstr "``run_dynamic_power``——运行动态功耗分析。"
+
+#: ../../source/commands.rst:112
+msgid "``run_leakage_power`` — Run leakage power analysis."
+msgstr "``run_leakage_power``——运行漏电功耗分析。"
+
+#: ../../source/commands.rst:113
+msgid "``set_activity_factor`` — Set switching activity factor."
+msgstr "``set_activity_factor``——设置翻转活动因子。"
+
+#: ../../source/commands.rst:114
+msgid "``pa_init`` — Initialize power analysis."
+msgstr "``pa_init``——初始化功耗分析。"
+
+#: ../../source/commands.rst:117
+msgid "Timing Optimization (iTO)"
+msgstr "时序优化（iTO）"
+
+#: ../../source/commands.rst:119
+msgid "``run_to`` — Run timing optimization."
+msgstr "``run_to``——运行时序优化。"
+
+#: ../../source/commands.rst:120
+msgid "``run_to_setup`` — Run setup timing optimization."
+msgstr "``run_to_setup``——运行建立时间优化。"
+
+#: ../../source/commands.rst:121
+msgid "``run_to_hold`` — Run hold timing optimization."
+msgstr "``run_to_hold``——运行保持时间优化。"
+
+#: ../../source/commands.rst:122
+msgid "``to_config`` — Configure timing optimization."
+msgstr "``to_config``——配置时序优化。"
+
+#: ../../source/commands.rst:123
+msgid "``to_report`` — Report timing optimization results."
+msgstr "``to_report``——报告时序优化结果。"
+
+#: ../../source/commands.rst:126
+msgid "Net Optimization (iNO)"
+msgstr "网络优化（iNO）"
+
+#: ../../source/commands.rst:128
+msgid "``run_no_fixfanout`` — Fix high-fanout nets."
+msgstr "``run_no_fixfanout``——修复高扇出网络。"
+
+#: ../../source/commands.rst:129
+msgid "``no_config`` — Configure net optimization."
+msgstr "``no_config``——配置网络优化。"
+
+#: ../../source/commands.rst:130
+msgid "``no_report`` — Report net optimization results."
+msgstr "``no_report``——报告网络优化结果。"
+
+#: ../../source/commands.rst:133
+msgid "DRC (Design Rule Checking — iDRC)"
+msgstr "DRC（设计规则检查——iDRC）"
+
+#: ../../source/commands.rst:135
+msgid "``run_drc`` — Run design rule checking."
+msgstr "``run_drc``——运行设计规则检查。"
+
+#: ../../source/commands.rst:136
+msgid "``check_def`` — Check DEF file for DRC violations."
+msgstr "``check_def``——检查 DEF 文件的 DRC 违例。"
+
+#: ../../source/commands.rst:137
+msgid "``save_drc`` — Save DRC results."
+msgstr "``save_drc``——保存 DRC 结果。"
+
+#: ../../source/commands.rst:138
+msgid "``drc_init`` — Initialize DRC engine."
+msgstr "``drc_init``——初始化 DRC 引擎。"
+
+#: ../../source/commands.rst:139
+msgid "``drc_config`` — Configure DRC rules."
+msgstr "``drc_config``——配置 DRC 规则。"
+
+#: ../../source/commands.rst:140
+msgid "``drc_report`` — Report DRC violations."
+msgstr "``drc_report``——报告 DRC 违例。"
+
+#: ../../source/commands.rst:141
+msgid "``drc_mark_fixed`` — Mark DRC violations as fixed."
+msgstr "``drc_mark_fixed``——将 DRC 违例标记为已修复。"
+
+#: ../../source/commands.rst:142
+msgid "``add_drc_black_cell`` — Exclude cells from DRC checking."
+msgstr "``add_drc_black_cell``——将单元排除在 DRC 检查之外。"
+
+#: ../../source/commands.rst:145
+msgid "ECO (Engineering Change Order)"
+msgstr "ECO（工程变更指令）"
+
+#: ../../source/commands.rst:147
+msgid "``eco_repair_via`` — Repair via ECO changes."
+msgstr "``eco_repair_via``——通过 ECO 修复通孔。"
+
+#: ../../source/commands.rst:148
+msgid "``eco_repair_pin`` — Repair pin connection ECO."
+msgstr "``eco_repair_pin``——修复引脚连接 ECO。"
+
+#: ../../source/commands.rst:149
+msgid "``eco_repair_wire`` — Repair wire ECO."
+msgstr "``eco_repair_wire``——修复连线 ECO。"
+
+#: ../../source/commands.rst:150
+msgid "``eco_repair_tapevia`` — Repair taper via ECO."
+msgstr "``eco_repair_tapevia``——修复锥形通孔 ECO。"
+
+#: ../../source/commands.rst:153
+msgid "GUI"
+msgstr "图形界面"
+
+#: ../../source/commands.rst:155
+msgid "``gui_start`` — Start the GUI viewer."
+msgstr "``gui_start``——启动 GUI 查看器。"
+
+#: ../../source/commands.rst:156
+msgid "``gui_show`` — Display current design in GUI."
+msgstr "``gui_show``——在 GUI 中显示当前设计。"
+
+#: ../../source/commands.rst:157
+msgid "``gui_show_idb`` — Display design from database."
+msgstr "``gui_show_idb``——从数据库显示设计。"
+
+#: ../../source/commands.rst:158
+msgid "``gui_set_display`` — Configure GUI display settings."
+msgstr "``gui_set_display``——配置 GUI 显示设置。"
+
+#: ../../source/commands.rst:159
+msgid "``capture_design`` — Capture design screenshot."
+msgstr "``capture_design``——截取设计截图。"
+
+#: ../../source/commands.rst:160
+msgid "``gui_close`` — Close the GUI."
+msgstr "``gui_close``——关闭 GUI。"
+
+#: ../../source/commands.rst:161
+msgid "``gui_banner`` — Show GUI status banner."
+msgstr "``gui_banner``——显示 GUI 状态横幅。"
+
+#: ../../source/commands.rst:164
+msgid "Report"
+msgstr "报告"
+
+#: ../../source/commands.rst:166
+msgid "``report_db`` — Report database summary."
+msgstr "``report_db``——报告数据库摘要。"
+
+#: ../../source/commands.rst:167
+msgid "``report_wirelength`` — Report wire length statistics."
+msgstr "``report_wirelength``——报告线长统计。"
+
+#: ../../source/commands.rst:168
+msgid "``report_congestion`` — Report routing congestion."
+msgstr "``report_congestion``——报告布线拥塞。"
+
+#: ../../source/commands.rst:169
+msgid "``report_utilization`` — Report cell utilization."
+msgstr "``report_utilization``——报告单元利用率。"
+
+#: ../../source/commands.rst:172
+msgid "PNP (Pin Placement)"
+msgstr "PNP（引脚布局）"
+
+#: ../../source/commands.rst:174
+msgid "``run_pnp`` — Run pin placement optimization."
+msgstr "``run_pnp``——运行引脚布局优化。"
+
+#: ../../source/commands.rst:175
+msgid "``pnp_report`` — Report pin placement results."
+msgstr "``pnp_report``——报告引脚布局结果。"
+
+#: ../../source/commands.rst:178
+msgid "Vectorization"
+msgstr "向量化"
+
+#: ../../source/commands.rst:180
+msgid "``vectorization_init`` — Initialize vectorization."
+msgstr "``vectorization_init``——初始化向量化。"
+
+#: ../../source/commands.rst:181
+msgid "``vectorization_run`` — Run vectorization extraction."
+msgstr "``vectorization_run``——运行向量化提取。"
+
+#: ../../source/commands.rst:182
+msgid "``vectorization_save_memory`` — Save vectorization data."
+msgstr "``vectorization_save_memory``——保存向量化数据。"
+
+#: ../../source/commands.rst:183
+msgid "``vectorization_load_memory`` — Load vectorization data."
+msgstr "``vectorization_load_memory``——加载向量化数据。"
+
+#: ../../source/commands.rst:186
+msgid "Eval"
+msgstr "评估"
+
+#: ../../source/commands.rst:188
+msgid "``eval_init`` — Initialize evaluation engine."
+msgstr "``eval_init``——初始化评估引擎。"
+
+#: ../../source/commands.rst:189
+msgid "``eval_flow`` — Evaluate flow metrics."
+msgstr "``eval_flow``——评估流程指标。"
+
+#: ../../source/commands.rst:190
+msgid "``eval_flow_parallel`` — Evaluate flow in parallel."
+msgstr "``eval_flow_parallel``——并行评估流程。"
+
+#: ../../source/commands.rst:193
+msgid "Feature"
+msgstr "特征"
+
+#: ../../source/commands.rst:195
+msgid "``feature_extract`` — Extract design features."
+msgstr "``feature_extract``——提取设计特征。"
+
+#: ../../source/commands.rst:196
+msgid "``feature_extract_parallel`` — Extract features in parallel."
+msgstr "``feature_extract_parallel``——并行提取特征。"
+
+#: ../../source/commands.rst:197
+msgid "``feature_select`` — Select features for analysis."
+msgstr "``feature_select``——选择用于分析的特征。"
+
+#: ../../source/commands.rst:198
+msgid "``feature_dump`` — Dump extracted features."
+msgstr "``feature_dump``——导出提取的特征。"
+
+#: ../../source/commands.rst:201
+msgid "Notification"
+msgstr "通知"
+
+#: ../../source/commands.rst:203
+msgid "``send_notification`` — Send EDA flow notification."
+msgstr "``send_notification``——发送 EDA 流程通知。"
+
+#: ../../source/commands.rst:204
+msgid "``send_notification_to`` — Send notification to specific target."
+msgstr "``send_notification_to``——发送通知到指定目标。"
+
+#: ../../source/commands.rst:205
+msgid "``get_notification`` — Retrieve pending notifications."
+msgstr "``get_notification``——获取待处理通知。"
+
+#: ../../source/commands.rst:206
+msgid "``get_notification_by_type`` — Retrieve notifications by category."
+msgstr "``get_notification_by_type``——按类别获取通知。"
+
+#: ../../source/commands.rst:207
+msgid "``mark_notification_read`` — Mark notification as read."
+msgstr "``mark_notification_read``——将通知标记为已读。"
+
+#: ../../source/commands.rst:210
+msgid "Contest"
+msgstr "竞赛"
+
+#: ../../source/commands.rst:212
+msgid "``run_contest`` — Run design contest evaluation."
+msgstr "``run_contest``——运行设计竞赛评估。"
+
+#: ../../source/commands.rst:213
+msgid "``contest_init`` — Initialize contest environment."
+msgstr "``contest_init``——初始化竞赛环境。"
+
+#: ../../source/commands.rst:214
+msgid "``contest_config`` — Configure contest parameters."
+msgstr "``contest_config``——配置竞赛参数。"
+
+#: ../../source/commands.rst:215
+msgid "``contest_report`` — Report contest results."
+msgstr "``contest_report``——报告竞赛结果。"
+
+#: ../../source/commands.rst:218
+msgid "Other"
+msgstr "其他"
+
+#: ../../source/commands.rst:220
+msgid "``netlist_analysis`` — Analyze netlist properties."
+msgstr "``netlist_analysis``——分析网表属性。"
+
+#: ../../source/commands.rst:221
+msgid "``netlist_evaluation`` — Evaluate netlist quality."
+msgstr "``netlist_evaluation``——评估网表质量。"
+
+#: ../../source/commands.rst:222
+msgid "``netlist_flow`` — Run netlist-based flow."
+msgstr "``netlist_flow``——运行基于网表的流程。"
+
+#: ../../source/commands.rst:223
+msgid "``netlist_flow_single`` — Run single netlist flow step."
+msgstr "``netlist_flow_single``——运行单步网表流程。"
+
+#: ../../source/commands.rst:224
+msgid "``message`` — Print EDA message."
+msgstr "``message``——打印 EDA 消息。"
+
+#: ../../source/commands.rst:225
+msgid "``message_get`` — Retrieve stored messages."
+msgstr "``message_get``——获取存储的消息。"
+
+#: ../../source/commands.rst:226
+msgid "``message_set`` — Store a message."
+msgstr "``message_set``——存储消息。"
+
+#: ../../source/commands.rst:227
+msgid "``error_get`` — Retrieve error messages."
+msgstr "``error_get``——获取错误消息。"
+
+#: ../../source/commands.rst:228
+msgid "``collect_metric`` — Collect a metric value."
+msgstr "``collect_metric``——收集指标值。"
+
+#: ../../source/commands.rst:229
+msgid "``metric_report`` — Report collected metrics."
+msgstr "``metric_report``——报告收集的指标。"
+
+#: ../../source/commands.rst:230
+msgid "``metric_export`` — Export metrics to file."
+msgstr "``metric_export``——将指标导出到文件。"
