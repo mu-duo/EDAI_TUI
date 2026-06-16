@@ -964,12 +964,22 @@ class TclMagics(Magics):
         except Exception as e:
             print(f"错误: {e}")
             return
+
+        # Log to agent context if an agent is available in the shell namespace
+        agent = self.shell.user_ns.get("agent")  # type: ignore[attr-defined]
+        if agent is not None and result is not None:
+            try:
+                agent.context.append({"role": "user", "content": f"[Tcl] {line}"})
+                agent.context.append({"role": "system", "content": f"[Output] {result}"})
+            except Exception:
+                pass
+
         if result is not None and result != "":
             # 确保输出显示在 IPython 中
             try:
                 from IPython.display import Pretty, display
 
-                display(Pretty(result))  # type: ignore[no-untyped-call]
+                display(Pretty(str(result)))  # type: ignore[no-untyped-call]
             except ImportError:
                 print(result)
 

@@ -112,6 +112,36 @@ def _make_shell_dispatch_transformer(
     return _transform
 
 
+def _build_commands_text(commands: dict[str, Any]) -> str:
+    """Build a compact command reference string for the agent."""
+    parts = ["Available Tcl commands and their options:"]
+    for name, info in sorted(commands.items()):
+        opts = info.get("options", [])
+        switches = set(info.get("switch_options", []))
+        tokens: list[str] = []
+        for o in opts:
+            if o == "-help":
+                continue
+            if o in switches:
+                tokens.append(o)
+            else:
+                tokens.append(f"{o} <value>")
+        opt_str = " ".join(tokens)
+        if opt_str:
+            parts.append(f"  {name} {opt_str}")
+        else:
+            parts.append(f"  {name}")
+    parts.append("")
+    parts.append("Tcl builtins: set, puts, expr, list_vars")
+    parts.append("")
+    parts.append(
+        "When the user types a Tcl command directly it executes immediately "
+        "and the result is logged to this context. "
+        "When you respond with a Tcl command line, it will be extracted and executed."
+    )
+    return "\n".join(parts)
+
+
 def _display_shell_value(value: Any) -> None:
     """Display shell output without relying on repr echo."""
     if value is None or value == "":
@@ -133,6 +163,7 @@ def _launch_ipython_shell() -> int:
     from edai.tool.tcl_interpreter import (
         ALL_COMMANDS,
         TCL_BUILTINS,
+        TCL_COMMANDS,
         _interp,
         load_ipython_extension,
     )
@@ -161,13 +192,19 @@ def _launch_ipython_shell() -> int:
                 )
             )
         )
+        # Give the agent the full command reference
+        agent.context.append({"role": "system", "content": _build_commands_text(TCL_COMMANDS)})
     except ConfigurationError as exc:
         agent = None
         agent_error = str(exc)
 
     def run_tcl(command: str) -> Any:
         """Execute a Tcl command directly through TclInterpreter."""
-        return tcl.execute(command)
+        result = tcl.execute(command)
+        if agent is not None:
+            agent.context.append({"role": "user", "content": f"[Tcl] {command}"})
+            agent.context.append({"role": "system", "content": f"[Output] {result}"})
+        return result
 
     def ask_agent(message: str) -> dict[str, Any]:
         """Ask the agent to execute intent or diagnose likely command mistakes."""
@@ -187,6 +224,14 @@ def _launch_ipython_shell() -> int:
             }
 
         result = tcl.execute(command)
+        # Log the Tcl execution result back to context so the agent
+        # can see what happened with the command it chose.
+        agent.context.append(
+            {
+                "role": "system",
+                "content": f"[Tcl] {command}\n[Output] {result}",
+            }
+        )
         return {
             "input": message,
             "agent_reply": reply,
@@ -209,6 +254,14 @@ def _launch_ipython_shell() -> int:
         python_ok, python_result = _run_python_input(stripped, shell.user_ns)
         if python_ok:
             _display_shell_value(python_result)
+            if agent is not None and python_result is not None:
+                agent.context.append({"role": "user", "content": f"[Python] {stripped}"})
+                agent.context.append(
+                    {
+                        "role": "system",
+                        "content": f"[Output] {python_result}",
+                    }
+                )
             return
 
         result = ask_agent(stripped)
