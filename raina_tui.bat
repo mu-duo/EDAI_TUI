@@ -1,1 +1,0 @@
-ipython.exe --ext edai.tool.tcl_interpreter
