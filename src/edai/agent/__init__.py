@@ -6,6 +6,7 @@ completion API.  Higher-level agents inherit from this primitive.
 """
 
 from edai.agent.base import Agent, AgentConfig
+from edai.agent.context import Context
 from edai.error import AgentError, ConfigurationError
 
 __all__ = [
@@ -13,4 +14,5 @@ __all__ = [
     "AgentConfig",
     "AgentError",
     "ConfigurationError",
+    "Context",
 ]

@@ -120,7 +120,7 @@ def _display_shell_value(value: Any) -> None:
     try:
         from IPython.display import Pretty, display
 
-        display(Pretty(value))  # type: ignore[no-untyped-call]
+        display(Pretty(str(value)))  # type: ignore[no-untyped-call]
     except ImportError:
         print(value)
 

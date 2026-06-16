@@ -11,11 +11,13 @@ or logic-only tests execute.
 from __future__ import annotations
 
 import os
+from typing import Any
 from unittest.mock import MagicMock, patch
 
 import pytest
+from openai.types.chat import ChatCompletionMessageParam
 
-from edai.agent import Agent, AgentConfig
+from edai.agent import Agent, AgentConfig, Context
 from edai.error import AgentError, ConfigurationError
 
 # ------------------------------------------------------------------
@@ -113,7 +115,7 @@ class TestInit:
         assert agent.config.api_key == real_config.api_key
         assert agent.config.base_url == real_config.base_url
         assert agent.config.model == real_config.model
-        assert agent.messages == []
+        assert agent.context == []
 
     def test_system_prompt_is_first_message(self, real_config: AgentConfig) -> None:
         """System prompt is prepended to the message history."""
@@ -124,8 +126,8 @@ class TestInit:
             system_prompt="You are a test bot.",
         )
         agent = Agent(config)
-        assert len(agent.messages) == 1
-        assert agent.messages[0] == {
+        assert len(agent.context) == 1
+        assert agent.context[0] == {
             "role": "system",
             "content": "You are a test bot.",
         }
@@ -137,9 +139,9 @@ class TestInit:
                 Agent()
 
     def test_repr(self, real_config: AgentConfig) -> None:
-        """``repr()`` includes the resolved model name."""
+        """``repr()`` includes model name and message count."""
         agent = Agent(real_config)
-        assert repr(agent) == f"Agent(model={real_config.model!r})"
+        assert repr(agent) == f"Agent(model={real_config.model!r}, messages=0)"
 
 
 # ------------------------------------------------------------------
@@ -155,14 +157,25 @@ class TestProperties:
         agent = Agent(real_config)
         assert agent.config is real_config
 
-    def test_messages_returns_copy(self, real_config: AgentConfig) -> None:
-        """``messages`` returns a new list each time (defensive copy)."""
+    def test_messages_is_context_instance(self, real_config: AgentConfig) -> None:
+        """``messages`` returns the :class:`Context` instance directly."""
         agent = Agent(real_config)
-        msgs1 = agent.messages
-        msgs2 = agent.messages
-        assert msgs1 is not msgs2
-        msgs1.append({"role": "user", "content": "injected"})
-        assert len(agent.messages) == 0
+        assert isinstance(agent.context, Context)
+
+    def test_messages_backward_compat(self, real_config: AgentConfig) -> None:
+        """``Context`` behaves list-like for common operations."""
+        agent = Agent(real_config)
+        # len() and indexing
+        assert len(agent.context) == 0
+        agent.context.append({"role": "user", "content": "hi"})
+        assert len(agent.context) == 1
+        assert agent.context[0] == {"role": "user", "content": "hi"}
+        # iteration
+        assert list(agent.context) == [{"role": "user", "content": "hi"}]
+        # bool
+        assert agent.context
+        agent.context.clear()
+        assert not agent.context
 
 
 # ------------------------------------------------------------------
@@ -177,13 +190,13 @@ class TestChat:
         """Two messages are added per call: user then assistant."""
         real_agent.reset()
         real_agent.chat("Say hello in one word.")
-        assert len(real_agent.messages) == 2
-        assert real_agent.messages[0] == {
+        assert len(real_agent.context) == 2
+        assert real_agent.context[0] == {
             "role": "user",
             "content": "Say hello in one word.",
         }
-        assert real_agent.messages[1]["role"] == "assistant"
-        content = real_agent.messages[1].get("content")
+        assert real_agent.context[1]["role"] == "assistant"
+        content = real_agent.context[1].get("content")
         assert isinstance(content, str)
         assert len(content) > 0
 
@@ -199,15 +212,15 @@ class TestChat:
         real_agent.reset()
         real_agent.chat("First message")
         real_agent.chat("Second message")
-        assert len(real_agent.messages) == 4
-        content = real_agent.messages[0].get("content")
+        assert len(real_agent.context) == 4
+        content = real_agent.context[0].get("content")
         assert isinstance(content, str)
         assert content == "First message"
-        assert real_agent.messages[1]["role"] == "assistant"
-        content = real_agent.messages[2].get("content")
+        assert real_agent.context[1]["role"] == "assistant"
+        content = real_agent.context[2].get("content")
         assert isinstance(content, str)
         assert content == "Second message"
-        assert real_agent.messages[3]["role"] == "assistant"
+        assert real_agent.context[3]["role"] == "assistant"
 
     def test_none_content_becomes_empty_string(self) -> None:
         """When the API returns ``None`` content, chat returns ``""``.
@@ -245,9 +258,9 @@ class TestChatStream:
         real_agent.reset()
         chunks = list(real_agent.chat_stream("Say hello."))
         full = "".join(chunks)
-        assert len(real_agent.messages) == 2
-        assert real_agent.messages[1]["role"] == "assistant"
-        content = real_agent.messages[1].get("content")
+        assert len(real_agent.context) == 2
+        assert real_agent.context[1]["role"] == "assistant"
+        content = real_agent.context[1].get("content")
         assert isinstance(content, str)
         assert content == full
 
@@ -273,7 +286,7 @@ class TestChatStream:
             agent = Agent(AgentConfig(api_key="sk-dummy"))
             result = list(agent.chat_stream("Hi"))
         assert result == []
-        assert agent.messages[-1] == {"role": "assistant", "content": ""}
+        assert agent.context[-1] == {"role": "assistant", "content": ""}
 
 
 # ------------------------------------------------------------------
@@ -288,9 +301,9 @@ class TestReset:
         """History is empty after reset when there is no system prompt."""
         real_agent.reset()
         # Manually push a stale message
-        real_agent._messages.append({"role": "user", "content": "stale"})
+        real_agent._context.append({"role": "user", "content": "stale"})
         real_agent.reset()
-        assert real_agent.messages == []
+        assert real_agent.context == []
 
     def test_preserves_system_prompt(self, real_config: AgentConfig) -> None:
         """System prompt survives a reset."""
@@ -301,16 +314,122 @@ class TestReset:
             system_prompt="You are a bot.",
         )
         agent = Agent(config)
-        agent._messages.append({"role": "user", "content": "stale"})
+        agent._context.append({"role": "user", "content": "stale"})
         agent.reset()
-        assert len(agent.messages) == 1
-        assert agent.messages[0] == {"role": "system", "content": "You are a bot."}
+        assert len(agent.context) == 1
+        assert agent.context[0] == {"role": "system", "content": "You are a bot."}
 
     def test_reset_twice_is_idempotent(self, real_agent: Agent) -> None:
         """Calling reset() multiple times is safe."""
         real_agent.reset()
         real_agent.reset()
-        assert real_agent.messages == []
+        assert real_agent.context == []
+
+
+# ------------------------------------------------------------------
+# Context class
+# ------------------------------------------------------------------
+
+
+class TestContext:
+    """Context container behaviour."""
+
+    def test_empty_context(self) -> None:
+        """Empty context is falsy and has length zero."""
+        ctx = Context()
+        assert len(ctx) == 0
+        assert not ctx
+
+    def test_append_and_index(self) -> None:
+        """Messages can be appended and accessed by index."""
+        ctx = Context()
+        ctx.append({"role": "user", "content": "hello"})
+        ctx.append({"role": "assistant", "content": "hi"})
+        assert len(ctx) == 2
+        assert ctx[0] == {"role": "user", "content": "hello"}
+        assert ctx[1] == {"role": "assistant", "content": "hi"}
+
+    def test_clear(self) -> None:
+        """clear() removes all messages."""
+        ctx = Context([{"role": "user", "content": "x"}])
+        assert len(ctx) == 1
+        ctx.clear()
+        assert len(ctx) == 0
+
+    def test_iteration(self) -> None:
+        """Context is iterable."""
+        msgs: list[ChatCompletionMessageParam] = [
+            {"role": "user", "content": "a"},
+            {"role": "assistant", "content": "b"},
+        ]
+        ctx = Context(msgs)
+        assert list(ctx) == msgs
+
+    def test_eq_list(self) -> None:
+        """Context compares equal to a list of messages."""
+        ctx = Context([{"role": "user", "content": "hi"}])
+        assert ctx == [{"role": "user", "content": "hi"}]
+
+    def test_eq_context(self) -> None:
+        """Two Contexts with the same messages are equal."""
+        ctx1 = Context([{"role": "user", "content": "hi"}])
+        ctx2 = Context([{"role": "user", "content": "hi"}])
+        assert ctx1 == ctx2
+        ctx2.append({"role": "assistant", "content": "hello"})
+        assert ctx1 != ctx2
+
+    def test_copy(self) -> None:
+        """copy() returns an independent clone."""
+        ctx = Context([{"role": "user", "content": "hello"}])
+        cloned = ctx.copy()
+        assert cloned == ctx
+        cloned.append({"role": "assistant", "content": "world"})
+        assert len(ctx) == 1
+        assert len(cloned) == 2
+
+    def test_contains(self) -> None:
+        """in operator works."""
+        msg: ChatCompletionMessageParam = {"role": "user", "content": "hi"}
+        ctx = Context([msg])
+        assert msg in ctx
+        assert {"role": "assistant", "content": "x"} not in ctx
+
+    def test_repr(self) -> None:
+        """repr shows message count."""
+        ctx = Context()
+        assert repr(ctx) == "Context(0 messages)"
+        ctx.append({"role": "user", "content": "x"})
+        assert repr(ctx) == "Context(1 messages)"
+
+    def test_str_includes_separators(self) -> None:
+        """str output contains role and index markers."""
+        ctx = Context([{"role": "user", "content": "hello"}])
+        output = str(ctx)
+        assert "Message #1" in output
+        assert "[user]" in output
+        assert "hello" in output
+        assert "Total: 1 messages" in output
+
+    def test_to_file(self, tmp_path: Any) -> None:
+        """to_file() writes pretty-printed output."""
+        ctx = Context([{"role": "user", "content": "hello"}])
+        path = str(tmp_path / "messages.txt")
+        ctx.to_file(path)
+        content = open(path, encoding="utf-8").read()
+        assert "Message #1" in content
+        assert "[user]" in content
+        assert "hello" in content
+        assert "Total: 1 messages" in content
+
+    def test_agent_custom_context(self, real_config: AgentConfig) -> None:
+        """Agent accepts an external Context instance."""
+        ctx = Context([{"role": "system", "content": "You are a bot."}])
+        agent = Agent(config=real_config, context=ctx)
+        # same object
+        assert agent.context is ctx
+        assert len(agent.context) == 1
+        # system prompt is NOT re-added — the caller owns the context
+        assert agent.context[0] == {"role": "system", "content": "You are a bot."}
 
 
 # ------------------------------------------------------------------

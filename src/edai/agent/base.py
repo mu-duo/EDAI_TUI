@@ -21,8 +21,8 @@ from typing import Any
 
 from dotenv import load_dotenv
 from openai import OpenAI
-from openai.types.chat import ChatCompletionMessageParam
 
+from edai.agent.context import Context
 from edai.error import AgentError, ConfigurationError  # noqa: F401 — re-exported
 
 # Load .env file once at import time so all consumers inherit the env.
@@ -76,9 +76,13 @@ class Agent:
     conversation context.  Call :meth:`reset` to clear the history.
     """
 
-    def __init__(self, config: AgentConfig | None = None) -> None:
+    def __init__(
+        self,
+        config: AgentConfig | None = None,
+        context: Context | None = None,
+    ) -> None:
         self._config = config or AgentConfig()
-        self._messages: list[ChatCompletionMessageParam] = []
+        self._context = context if context is not None else Context()
         self._client = self._build_client()
         self._init_system_prompt()
 
@@ -92,9 +96,13 @@ class Agent:
         return self._config
 
     @property
-    def messages(self) -> list[ChatCompletionMessageParam]:
-        """A copy of the current message history."""
-        return list(self._messages)
+    def context(self) -> Context:
+        """The conversation message history.
+
+        Returns the :class:`Context` instance directly.  Use
+        ``list(agent.context)`` if a plain list is needed.
+        """
+        return self._context
 
     # ------------------------------------------------------------------
     # Public API
@@ -111,15 +119,15 @@ class Agent:
         Returns:
             The assistant's response content.
         """
-        self._messages.append({"role": "user", "content": message})
+        self._context.append({"role": "user", "content": message})
 
         completion = self._client.chat.completions.create(
             model=self._resolve_model(),
-            messages=list(self._messages),
+            messages=list(self._context),
             **kwargs,
         )
         content = completion.choices[0].message.content or ""
-        self._messages.append({"role": "assistant", "content": content})
+        self._context.append({"role": "assistant", "content": content})
         return content
 
     def chat_stream(self, message: str, **kwargs: Any) -> Iterator[str]:
@@ -136,11 +144,11 @@ class Agent:
         Yields:
             Content delta strings as they arrive from the API.
         """
-        self._messages.append({"role": "user", "content": message})
+        self._context.append({"role": "user", "content": message})
 
         stream = self._client.chat.completions.create(
             model=self._resolve_model(),
-            messages=list(self._messages),
+            messages=list(self._context),
             stream=True,
             **kwargs,
         )
@@ -152,7 +160,7 @@ class Agent:
                 collected.append(delta)
                 yield delta
 
-        self._messages.append({"role": "assistant", "content": "".join(collected)})
+        self._context.append({"role": "assistant", "content": "".join(collected)})
 
     def reset(self) -> None:
         """Clear all message history.
@@ -160,7 +168,7 @@ class Agent:
         The system prompt (if any) is re-inserted so the next conversation
         starts fresh with the same instructions.
         """
-        self._messages.clear()
+        self._context.clear()
         self._init_system_prompt()
 
     # ------------------------------------------------------------------
@@ -183,7 +191,7 @@ class Agent:
 
     def _init_system_prompt(self) -> None:
         if self._config.system_prompt:
-            self._messages.append({"role": "system", "content": self._config.system_prompt})
+            self._context.append({"role": "system", "content": self._config.system_prompt})
 
     def __repr__(self) -> str:
-        return f"Agent(model={self._resolve_model()!r})"
+        return f"Agent(model={self._resolve_model()!r}, messages={len(self._context)})"
